@@ -1,15 +1,3 @@
-#ip bo qua khong chan
-ignoreip = 127.0.0.1/8 ::1  118.69.63.53 171.244.18.3
-
-#so giay may chu bi cam
-bantime  = 600
-
-#khoang thoi gian login sai
-findtime  = 600
-
-#so lan that bai
-maxretry = 3
-
 #mac dinh vestacp 
 
 [ssh-iptables]
