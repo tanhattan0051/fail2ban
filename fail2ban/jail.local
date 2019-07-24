@@ -42,6 +42,20 @@ maxretry = 5
 
 
 #template 
+[DEFAULT]
+port = 0:65535
+filter = %(__name__)s
+
+[blacklist]
+enabled = true
+logpath  = /var/log/fail2ban.*
+filter = blacklist
+action = csfdeny[name=%(__name__)s]
+bantime  = 259200
+findtime = 21600 
+maxretry = 10
+
+
 [xmlrpc]
 enabled = true
 filter = xmlrpc
@@ -64,14 +78,14 @@ maxretry = 1
 findtime = 1
 
 # >5 within 6 hours will be banned for longer 72hr time
-[wordpress-pingback-repeat]
-enabled = true
-filter = wordpress-pingback-repeat
-action = csfdeny[name=wordpress-pingback-repeat]
-logpath = /var/log/fail2ban.log
-bantime  = 259200
-maxretry = 5
-findtime = 21600
+#[wordpress-pingback-repeat]
+#enabled = true
+#filter = wordpress-pingback-repeat
+#action = csfdeny[name=wordpress-pingback-repeat]
+#logpath = /var/log/fail2ban.log
+#bantime  = 259200
+#maxretry = 5
+#findtime = 21600
 
 [wordpress-auth]
 enabled = true
@@ -91,3 +105,14 @@ port = http,https
 bantime = 3600
 maxretry = 5
 findtime = 60
+
+
+[webexploits]
+enabled  = true
+port     = http,https
+filter   = webexploits
+action = csfdeny[name=webexploits]
+logpath = /home/*/web/*/logs/*.log
+findtime = 5
+bandtime = 3600
+maxretry = 10
